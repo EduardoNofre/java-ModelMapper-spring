@@ -19,22 +19,31 @@ Se você já conhece ou já trabalha com o padrão DTO, sabe que pra converter u
 ### O que é um boilerplate?
 R: Neste meu caso e quando você converte uma entity para um DTO.
 
-### exemplo boilerplate.
+### Exemplo com boilerplate.
 
 
-		// entity 
-		ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
+// entity 
+ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
 		
-		// DTO 
-		ModelMapperDto boilerplateDto = new ModelMapperDto();
-		boilerplateDto.setId(boilerplateEntity.getId());
-		boilerplateDto.setEndereco(boilerplateEntity.getEndereco());
-		boilerplateDto.setIdade(boilerplateEntity.getIdade());
-		boilerplateDto.setNome(boilerplateEntity.getNome());
-		boilerplateDto.setTelefone(boilerplateEntity.getTelefone());
-    
-    return boilerplateDto;
 
+ModelMapperDto boilerplateDto = new ModelMapperDto();
+boilerplateDto.setId(boilerplateEntity.getId());
+boilerplateDto.setEndereco(boilerplateEntity.getEndereco());
+boilerplateDto.setIdade(boilerplateEntity.getIdade());
+boilerplateDto.setNome(boilerplateEntity.getNome());
+boilerplateDto.setTelefone(boilerplateEntity.getTelefone());
+
+// Retorna um DTO
+return boilerplateDto;
+
+
+### Exemplo sem boilerplate utilizando o ModelMapper;
+
+// entity 
+ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
+
+// Retorna um DTO
+return modelMapper.map(modelMapperService.buscaIdSemboilerplate(id), ModelMapperDto.class);
 
 creditos: </br>
 [Algaworks](https://www.linkedin.com/feed/hashtag/?keywords=modelmapper&highlightedUpdateUrns=urn%3Ali%3Aactivity%3A6799318021534978048) </br>
