@@ -43,6 +43,8 @@ return boilerplateDto;
 ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
 // Retorna um DTO
 return modelMapper.map(modelMapperService.buscaIdSemboilerplate(id), ModelMapperDto.class);
+
+muito mais simples sem aquela preocupação de set mais ou menos o proprio ModelMapper trata isso de forma abstrata.
 ````
 creditos: </br>
 [Algaworks](https://www.linkedin.com/feed/hashtag/?keywords=modelmapper&highlightedUpdateUrns=urn%3Ali%3Aactivity%3A6799318021534978048) </br>
