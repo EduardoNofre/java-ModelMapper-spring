@@ -24,8 +24,8 @@ R: Neste meu caso e quando você converte uma entity para um DTO.
 
 // entity 
 ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
-		
 
+// transformando Entity em DTO
 ModelMapperDto boilerplateDto = new ModelMapperDto();
 boilerplateDto.setId(boilerplateEntity.getId());
 boilerplateDto.setEndereco(boilerplateEntity.getEndereco());
@@ -41,7 +41,6 @@ return boilerplateDto;
 
 // entity 
 ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
-
 // Retorna um DTO
 return modelMapper.map(modelMapperService.buscaIdSemboilerplate(id), ModelMapperDto.class);
 
