@@ -17,3 +17,4 @@ Se você já conhece ou já trabalha com o padrão DTO, sabe que pra converter u
 
 creditos:
 [Algaworks](https://www.linkedin.com/feed/hashtag/?keywords=modelmapper&highlightedUpdateUrns=urn%3Ali%3Aactivity%3A6799318021534978048)
+[Documentação Model Mapper](http://modelmapper.org/getting-started/)
