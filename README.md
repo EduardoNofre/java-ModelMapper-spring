@@ -21,7 +21,7 @@ R: Neste meu caso e quando você converte uma entity para um DTO.
 
 ### Exemplo com boilerplate.
 
-
+````
 // entity 
 ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
 
@@ -35,15 +35,15 @@ boilerplateDto.setTelefone(boilerplateEntity.getTelefone());
 
 // Retorna um DTO
 return boilerplateDto;
-
+````
 
 ### Exemplo sem boilerplate utilizando o ModelMapper;
-
+````
 // entity 
 ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
 // Retorna um DTO
 return modelMapper.map(modelMapperService.buscaIdSemboilerplate(id), ModelMapperDto.class);
-
+````
 creditos: </br>
 [Algaworks](https://www.linkedin.com/feed/hashtag/?keywords=modelmapper&highlightedUpdateUrns=urn%3Ali%3Aactivity%3A6799318021534978048) </br>
 [Documentação Model Mapper](http://modelmapper.org/getting-started/) </br>
