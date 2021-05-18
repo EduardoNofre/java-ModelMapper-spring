@@ -47,7 +47,7 @@ return modelMapper.map(modelMapperService.buscaIdSemboilerplate(id), ModelMapper
 muito mais simples sem aquela preocupação de set mais ou menos o proprio ModelMapper trata isso de forma abstrata.
 ````
 
-Com o modelmapper podemos conveter um Dto para Entity e um Entity para Dto.
+Com o ModelMapper podemos conveter um Dto para Entity e um Entity para Dto.
 
 creditos: </br>
 [Algaworks](https://www.linkedin.com/feed/hashtag/?keywords=modelmapper&highlightedUpdateUrns=urn%3Ali%3Aactivity%3A6799318021534978048) </br>
