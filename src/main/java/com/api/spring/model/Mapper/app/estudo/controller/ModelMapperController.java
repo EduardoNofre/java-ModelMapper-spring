@@ -1,5 +1,9 @@
 package com.api.spring.model.Mapper.app.estudo.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,9 +31,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 @Validated
 @RestController
 public class ModelMapperController {
-	
-	@Autowired
-	private ModelMapper modelMapper;
 
 	@Autowired
 	private ModelMapperService modelMapperService;
@@ -46,11 +47,9 @@ public class ModelMapperController {
 	@GetMapping(value = "/sem/boilerplate/id/{id}")
 	public  ResponseEntity<ModelMapperDto>idSemboilerplate(@Parameter(description = "Nome.", required = true) @PathVariable long id) {
 
-		// Aqui neste exemplo não utilizamos o boilerplate.
-		
-		return new ResponseEntity<ModelMapperDto> (modelMapper.map(modelMapperService.buscaIdSemboilerplate(id), ModelMapperDto.class) , HttpStatus.OK);
+		return new ResponseEntity<ModelMapperDto> (modelMapperService.buscaIdSemboilerplate(id) , HttpStatus.OK);
 	}
-	
+
 	@ApiResponses(value = { @ApiResponse(responseCode = "", description = ""
 			+ " <br />responseCode = 200, Encontrado com sucesso"
 			+ " <br />responseCode = 400, Erro processar a requisição" 
@@ -63,25 +62,40 @@ public class ModelMapperController {
 	@GetMapping(value = "/com/boilerplate/id/{id}")
 	public  ResponseEntity<ModelMapperDto>idComboilerplate(@Parameter(description = "Nome.", required = true) @PathVariable long id) {
 
-		// Aqui neste exemplo utilizamos o boilerplate.
-		// O que boilerplate?
-		// R: É transforma o objeto entity em um DTO como mostra o exemplo abaixo.
-		
-		
-		// entity 
-		ModelMapperEntity boilerplateEntity = modelMapperService.buscaIdComboilerplate(id);
-		
-		// DTO 
-		ModelMapperDto boilerplateDto = new ModelMapperDto();
-		boilerplateDto.setId(boilerplateEntity.getId());
-		boilerplateDto.setEndereco(boilerplateEntity.getEndereco());
-		boilerplateDto.setIdade(boilerplateEntity.getIdade());
-		boilerplateDto.setNome(boilerplateEntity.getNome());
-		boilerplateDto.setTelefone(boilerplateEntity.getTelefone());
-				
-		return new ResponseEntity<ModelMapperDto> (boilerplateDto, HttpStatus.OK);
+		return new ResponseEntity<ModelMapperDto> (modelMapperService.buscaIdComboilerplate(id), HttpStatus.OK);
 	}
-	
+
+	@ApiResponses(value = { @ApiResponse(responseCode = "", description = ""
+			+ " <br />responseCode = 200, Encontrado com sucesso"
+			+ " <br />responseCode = 400, Erro processar a requisição" 
+			+ " <br />responseCode = 401, Não autorizado."
+			+ " <br />responseCode = 404, Não encontrado."
+			+ " <br />responseCode = 500, Erro interno sem causa mapeada."
+			+ " <br />responseCode = 504, Gateway Time-Out."
+			+ " <br />responseCode = 509, Conflito de dados.") })
+	@Operation(summary = "Busca todos lista todos sem boilerplate", description = "Busca todos lista todos sem boilerplate", tags = {"Busca todos lista todos sem boilerplate"})
+	@GetMapping(value = "/sem/boilerplate/lista/todos")
+	public ResponseEntity<List<ModelMapperDto>>  listaTodosSemboilerplate() {
+
+		return new ResponseEntity<List<ModelMapperDto>>(modelMapperService.listaTodosSemboilerplate(),HttpStatus.OK);
+
+	}
+
+	@ApiResponses(value = { @ApiResponse(responseCode = "", description = ""
+			+ " <br />responseCode = 200, Encontrado com sucesso"
+			+ " <br />responseCode = 400, Erro processar a requisição" 
+			+ " <br />responseCode = 401, Não autorizado."
+			+ " <br />responseCode = 404, Não encontrado."
+			+ " <br />responseCode = 500, Erro interno sem causa mapeada."
+			+ " <br />responseCode = 504, Gateway Time-Out."
+			+ " <br />responseCode = 509, Conflito de dados.") })
+	@Operation(summary = "Busca todos lista todos com boilerplate", description = "Busca todos lista todos com boilerplate", tags = {"Busca todos lista todos com boilerplate"})
+	@GetMapping(value = "/com/boilerplate/lista/todos")
+	public ResponseEntity<List<ModelMapperDto>>  listaTodosComboilerplate() {		
+
+		return new ResponseEntity<List<ModelMapperDto>>(modelMapperService.listaTodosComboilerplate(),HttpStatus.OK);
+	}
+
 	@ApiResponses(value = { @ApiResponse(responseCode = "", description = ""
 			+ " <br />responseCode = 200, Encontrado com sucesso"
 			+ " <br />responseCode = 400, Erro processar a requisição" 
@@ -93,12 +107,12 @@ public class ModelMapperController {
 	@Operation(summary = "cadastrar", description = "cadastrar no banco de dados", tags = {"cadastrar"})
 	@PutMapping(value = "cadastrar/nome{nome}/endereco{endereco}/ telefone{telefone}/idade{idade}")
 	public ResponseEntity<ModelMapperEntity>  cadastro(
-					@Parameter(description = "Nome.", required = true) @PathVariable String nome,
-					@Parameter(description = "Endereco.", required = true) @PathVariable String endereco,
-					@Parameter(description = "Telefone.", required = true) @PathVariable String telefone,
-					@Parameter(description = "Idade.", required = true) @PathVariable int idade) {
+			@Parameter(description = "Nome.", required = true) @PathVariable String nome,
+			@Parameter(description = "Endereco.", required = true) @PathVariable String endereco,
+			@Parameter(description = "Telefone.", required = true) @PathVariable String telefone,
+			@Parameter(description = "Idade.", required = true) @PathVariable int idade) {
 
 		return new ResponseEntity<ModelMapperEntity> (modelMapperService.inserir(nome, endereco, telefone, idade), HttpStatus.OK);
-		
+
 	}
 }
